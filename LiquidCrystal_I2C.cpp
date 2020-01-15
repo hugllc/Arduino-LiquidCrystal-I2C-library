@@ -35,8 +35,8 @@ LiquidCrystal_I2C::~LiquidCrystal_I2C()
 {
 }
 void LiquidCrystal_I2C::begin() {
-	Wire.begin();
-	_displayfunction = LCD_4BITMODE | LCD_1LINE | LCD_5x8DOTS;
+
+    _displayfunction = LCD_4BITMODE | LCD_1LINE | LCD_5x8DOTS;
 
 	if (_rows > 1) {
 		_displayfunction |= LCD_2LINE;
@@ -52,10 +52,11 @@ void LiquidCrystal_I2C::begin() {
 	// before sending commands. Arduino can turn on way befer 4.5V so we'll wait 50
 	delay(50);
 
+    Serial.println("H");
 	// Now we pull both RS and R/W low to begin commands
 	expanderWrite(_backlightval);	// reset expanderand turn backlight off (Bit 8 =1)
 	delay(1000);
-
+    Serial.println("I");
 	//put the LCD into 4 bit mode
 	// this is according to the hitachi HD44780 datasheet
 	// figure 24, pg 46
