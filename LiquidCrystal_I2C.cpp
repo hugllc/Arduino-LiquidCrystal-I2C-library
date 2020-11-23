@@ -1,8 +1,9 @@
 #include "LiquidCrystal_I2C.h"
 #include <inttypes.h>
 #include <Arduino.h>
+#ifdef I2C_ENABLE
 #include <Wire.h>
-
+#endif
 // When the display powers up, it is configured as follows:
 //
 // 1. Display clear
@@ -228,9 +229,11 @@ void LiquidCrystal_I2C::write4bits(uint8_t value) {
 }
 
 void LiquidCrystal_I2C::expanderWrite(uint8_t _data){
+#ifdef I2C_ENABLE
 	Wire.beginTransmission(_addr);
 	Wire.write((int)(_data) | _backlightval);
 	Wire.endTransmission();
+#endif
 }
 
 void LiquidCrystal_I2C::pulseEnable(uint8_t _data){
